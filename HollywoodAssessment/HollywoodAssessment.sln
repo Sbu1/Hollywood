@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HollywoodAssessment", "HollywoodAssessment\HollywoodAssessment.csproj", "{058BA34C-CA65-4BBE-971B-81340A490CD4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HollywoodAssessmen.API", "HollywoodAssessment\HollywoodAssessmen.API.csproj", "{058BA34C-CA65-4BBE-971B-81340A490CD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HollywoodAssessment.Data", "HollywoodAssessment.Data\HollywoodAssessment.Data.csproj", "{4A1494F9-EF7B-44B6-A924-4D864E50048A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HollywoodAssessment.Service", "HollywoodAssessment.Service\HollywoodAssessment.Service.csproj", "{67DE6596-1A43-4B3E-B4D6-42E0867A97AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HollywoodAssessment.Common", "HollywoodAssessment.Common\HollywoodAssessment.Common.csproj", "{21031773-AEE3-4008-89BB-46C3FAACDDEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HollywoodAssessment.Tests", "HollywoodAssessment.Tests\HollywoodAssessment.Tests.csproj", "{6669F843-46CF-4D8A-915C-786A9758FC47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{058BA34C-CA65-4BBE-971B-81340A490CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{058BA34C-CA65-4BBE-971B-81340A490CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{058BA34C-CA65-4BBE-971B-81340A490CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A1494F9-EF7B-44B6-A924-4D864E50048A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1494F9-EF7B-44B6-A924-4D864E50048A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1494F9-EF7B-44B6-A924-4D864E50048A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1494F9-EF7B-44B6-A924-4D864E50048A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67DE6596-1A43-4B3E-B4D6-42E0867A97AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67DE6596-1A43-4B3E-B4D6-42E0867A97AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67DE6596-1A43-4B3E-B4D6-42E0867A97AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67DE6596-1A43-4B3E-B4D6-42E0867A97AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21031773-AEE3-4008-89BB-46C3FAACDDEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21031773-AEE3-4008-89BB-46C3FAACDDEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21031773-AEE3-4008-89BB-46C3FAACDDEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21031773-AEE3-4008-89BB-46C3FAACDDEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6669F843-46CF-4D8A-915C-786A9758FC47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6669F843-46CF-4D8A-915C-786A9758FC47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6669F843-46CF-4D8A-915C-786A9758FC47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6669F843-46CF-4D8A-915C-786A9758FC47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
