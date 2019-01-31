@@ -7,4 +7,8 @@
     <StartupObject />
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HollywoodAssessment.Common\HollywoodAssessment.Common.csproj" />
+  </ItemGroup>
+
 </Project>
