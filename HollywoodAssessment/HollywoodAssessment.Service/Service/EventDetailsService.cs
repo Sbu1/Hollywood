@@ -6,7 +6,7 @@ using HollywoodAssessment.Data.Models;
 
 namespace HollywoodAssessment.Service.Service
 {
-  public class EventDetailsService : IEventDetail
+  public class EventDetailsService : IEventDetailService
   {
     public HollywoodAssessmentDbContext db;
 

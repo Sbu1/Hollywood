@@ -10,5 +10,6 @@ namespace HollywoodAssessment.Common.Interfaces
     void CreateTournament(Tournament tournament);
     void UpdateTournament(int id,Tournament tournament);
     void DeleteTournament(int id);
+    Tournament GetTournament(int id);
   }
 }

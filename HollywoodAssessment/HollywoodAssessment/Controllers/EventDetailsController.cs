@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HollywoodAssessment.Common.Interfaces;
+using HollywoodAssessment.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,36 +13,44 @@ namespace HollywoodAssessment.API.Controllers
   [Route("api/[controller]")]
   public class EventDetailsController : Controller
   {
-    // GET: api/<controller>
-    [HttpGet]
-    public IEnumerable<string> Get()
+    private readonly IEventDetailService _eventDetail;
+
+    public EventDetailsController(IEventDetailService eventDetail)
     {
-      return new string[] { "value1", "value2" };
+      _eventDetail = eventDetail;
     }
 
-    // GET api/<controller>/5
+
+    // GET: api/<controller>
     [HttpGet("{id}")]
-    public string Get(int id)
+    public ActionResult<EventDetail> Get(int id)
     {
-      return "value";
+      return _eventDetail.GetEventDetail(id);
     }
 
     // POST api/<controller>
     [HttpPost]
-    public void Post([FromBody]string value)
+    public ActionResult Post([FromBody]EventDetail eventDetail)
     {
+      _eventDetail.CreateEventDetails(eventDetail);
+      return Ok();
     }
 
     // PUT api/<controller>/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody]string value)
+    public ActionResult Put(int id, [FromBody]EventDetail eventDetail)
     {
+      _eventDetail.UpdateEventDetails(id,eventDetail);
+      return Ok();
     }
+
 
     // DELETE api/<controller>/5
     [HttpDelete("{id}")]
-    public void Delete(int id)
+    public ActionResult Delete(int id)
     {
+      _eventDetail.RemoveEventDetails(id);
+      return NoContent();
     }
   }
 }

@@ -30,10 +30,10 @@ namespace HollywoodAssessmen.API.Controllers
 
     // POST api/<controller>
     [HttpPost]
-    public ActionResult Post([FromBody]Tournament tournament)
+    public void Post([FromBody]Tournament tournament)
     {
       _tournamentService.CreateTournament(tournament);
-      return RedirectToAction("Post", "Event", new Event() {TournamentId = tournament.TournamentId});
+      RedirectToAction("Post", "Event", new Event() {TournamentId = tournament.TournamentId});
     }
 
     // PUT api/<controller>/5
