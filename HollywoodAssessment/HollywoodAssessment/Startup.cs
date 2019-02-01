@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace HollywoodAssessment
 {
@@ -36,11 +37,31 @@ namespace HollywoodAssessment
       services.AddTransient<ITournamentService, TournamentService>();
       services.AddTransient<IEventsService, EventService>();
       services.AddTransient<IEventDetailService, EventDetailsService>();
+
+      services.AddSwaggerGen(x =>
+      {
+        x.SwaggerDoc("v1", new Info
+        {
+          Title = "Hollywood",
+          Version = "v1",
+          Description = "To be updated",
+          Contact = new Contact
+          {
+            Email = "sbuddaz@gmail.com",
+            Name = "Sibusiso Sikhakhane"
+          }
+        });
+      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
+      app.UseStaticFiles();
+      app.UseSwagger();
+      app.UseSwaggerUI(x => { x.SwaggerEndpoint("/swagger/v1/swagger.json", "Hollywood API v1"); } );
+
+
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
