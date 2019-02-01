@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HollywoodAssessment.Common.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -17,7 +18,8 @@ namespace HollywoodAssessment.API.Middleware
     public HttpStatusCodeExceptionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
     {
       _next = next ?? throw new ArgumentNullException(nameof(next));
-      _logger = loggerFactory?.CreateLogger<HttpStatusCodeExceptionMiddleware>() ?? throw new ArgumentNullException(nameof(loggerFactory));
+      _logger = loggerFactory?.CreateLogger<HttpStatusCodeExceptionMiddleware>() ??
+                throw new ArgumentNullException(nameof(loggerFactory));
     }
 
     public async Task Invoke(HttpContext context)
@@ -54,4 +56,4 @@ namespace HollywoodAssessment.API.Middleware
     }
   }
 }
-}
+
