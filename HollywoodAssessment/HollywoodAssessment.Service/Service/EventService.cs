@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
+using HollywoodAssessment.Common.Exceptions;
 using HollywoodAssessment.Common.Interfaces;
 using HollywoodAssessment.Data.Models;
 
@@ -44,6 +46,8 @@ namespace HollywoodAssessment.Service.Service
     public Event GetEvent(int id)
     {
       var result = Db.Event.FirstOrDefault(x => x.EventId == id);
+      if(result is null)
+        throw  new HttpStatusCodeException((int)HttpStatusCode.BadRequest, "Invalid Event");
       return result;
     }
   }
