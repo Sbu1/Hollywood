@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HollywoodAssessmen.API.Controllers
 {
   [Route("api/[controller]")]
-  [Authorize("TournamentManager")]
+ [Authorize(Roles = "TournamentManager")]
   public class TournamentController : Controller
   {
     private readonly ITournamentService _tournamentService;
