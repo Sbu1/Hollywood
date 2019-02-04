@@ -21,7 +21,7 @@ namespace HollywoodAssessment.Service.Service
     {
       if (eventDetail.EventDetailId.ToString() is null)
       {
-        throw new HttpStatusCodeException((int)HttpStatusCode.BadRequest, "You need to create event first"));
+        throw new HttpStatusCodeException((int)HttpStatusCode.BadRequest, "You need to create event first");
       }
 
       db.EventDetail.Add(eventDetail);
