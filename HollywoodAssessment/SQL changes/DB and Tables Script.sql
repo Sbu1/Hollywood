@@ -159,8 +159,8 @@ CREATE TABLE [dbo].[User](
 	[FirstName] [varchar](30) NULL,
 	[LastName] [varchar](30) NULL,
 	[Username] [varchar](30) NULL,
-	[PasswordHash] [binary](1) NULL,
-	[PasswordSalt] [binary](1) NULL,
+	[PasswordHash] [binary](64) NULL,
+	[PasswordSalt] [binary](128) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
