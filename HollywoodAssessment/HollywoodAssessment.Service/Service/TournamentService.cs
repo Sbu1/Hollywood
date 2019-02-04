@@ -34,6 +34,7 @@ namespace HollywoodAssessment.Service.Service
     {
       var result = GetTournament(id);
       Db.Remove(result);
+      Db.SaveChanges();
     }
 
     public Tournament GetTournament(int id)

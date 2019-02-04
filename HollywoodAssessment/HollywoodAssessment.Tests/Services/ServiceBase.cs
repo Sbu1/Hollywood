@@ -16,7 +16,7 @@ namespace HollywoodAssessment.Tests.Services
     protected HollywoodAssessmentDbContext Db;
 
     [SetUp]
-    public async void Setup()
+    public async Task Setup()
     {
       var options = new DbContextOptionsBuilder<HollywoodAssessmentDbContext>()
         .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
@@ -39,8 +39,8 @@ namespace HollywoodAssessment.Tests.Services
       var Event = new List<Event>
       {
         new Event() {EventId = 1, AutoClose = false, EventDateTime = DateTime.Today, EventName = "TournamentEvent", EventNumber = 1,TournamentId = 1 },
-        new Event() {EventId = 2, AutoClose = true, EventDateTime = Convert.ToDateTime("1/1/2019") , EventName = "TournamentEvent2", EventNumber = 2,TournamentId = 1, EventEndDateTime = Convert.ToDateTime("23/03/2019")},
-        new Event() {EventId = 3, AutoClose = true, EventDateTime = Convert.ToDateTime("20/02/2019"), EventName = "TournamentEvent3", EventNumber = 4,TournamentId = 2 }
+        new Event() {EventId = 2, AutoClose = true, EventDateTime = Convert.ToDateTime("1/1/2019") , EventName = "TournamentEvent2", EventNumber = 2,TournamentId = 1, EventEndDateTime = Convert.ToDateTime("2/04/2019")},
+        new Event() {EventId = 3, AutoClose = true, EventDateTime = Convert.ToDateTime("03/23/2019"), EventName = "TournamentEvent3", EventNumber = 4,TournamentId = 2 }
       };
 
       await Db.Event.AddRangeAsync(Event);
@@ -60,7 +60,7 @@ namespace HollywoodAssessment.Tests.Services
       var eventDetails = new List<EventDetail>
       {
          new EventDetail() {EventDetailId = 1, EventDetailName = "EventDetailsForT1", EventDetailNumber = 2, EventDetailOdd = 50, EventDetailStatusId = 1,FirstTimer = true},
-         new EventDetail() {EventDetailId = 1, EventDetailName = "EventDetailsForT2", EventDetailNumber = 3, EventDetailOdd = 20, EventDetailStatusId = 2,FirstTimer = true},
+         new EventDetail() {EventDetailId = 2, EventDetailName = "EventDetailsForT2", EventDetailNumber = 3, EventDetailOdd = 20, EventDetailStatusId = 2,FirstTimer = true},
       };
 
       await Db.EventDetail.AddRangeAsync(eventDetails);
