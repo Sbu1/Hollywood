@@ -9,6 +9,7 @@ namespace HollywoodAssessment.Data.Models
         {
             Event = new HashSet<Event>();
         }
+        //todo validation
 
         public long TournamentId { get; set; }
         public string TournamentName { get; set; }

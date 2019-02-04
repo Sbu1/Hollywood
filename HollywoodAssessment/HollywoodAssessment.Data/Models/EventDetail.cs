@@ -5,6 +5,7 @@ namespace HollywoodAssessment.Data.Models
 {
     public partial class EventDetail
     {
+      //TODO Validation
         public long EventDetailId { get; set; }
         public long? EventId { get; set; }
         public short? EventDetailStatusId { get; set; }
