@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using HollywoodAssessment.Common.Helper;
 using HollywoodAssessment.Common.Interfaces;
 using HollywoodAssessment.Data.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -20,15 +21,13 @@ namespace HollywoodAssessment.API.Controllers
   public class Login : Controller
   {
     private readonly IUserService _userService;
-    private readonly IMapper _mapper;
-    private readonly AppSettings _appSettings;
+    private readonly appSettings _appSettings;
 
     public Login(
       IUserService userService,
       IMapper mapper)
     {
       _userService = userService;
-      _mapper = mapper;
     }
 
     [AllowAnonymous]
