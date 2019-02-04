@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HollywoodAssessmen.API.Controllers
 {
   [Route("api/[controller]")]
-  [Authorize(Roles = "TournamentManager")]
+  [Authorize(Roles = "TournamentManager, Admin")]
   public class TournamentController : Controller
   {
     private readonly ITournamentService _tournamentService;
@@ -46,8 +46,10 @@ namespace HollywoodAssessmen.API.Controllers
       return Ok();
     }
 
+    [Authorize(Roles = "Admin")]
     // DELETE api/<controller>/5
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
     public ActionResult Delete(int id)
     {
       _tournamentService.DeleteTournament(id);
