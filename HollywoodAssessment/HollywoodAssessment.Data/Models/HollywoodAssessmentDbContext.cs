@@ -19,8 +19,9 @@ namespace HollywoodAssessment.Data.Models
         public virtual DbSet<EventDetail> EventDetail { get; set; }
         public virtual DbSet<EventDetailStatus> EventDetailStatus { get; set; }
         public virtual DbSet<Tournament> Tournament { get; set; }
+        public virtual DbSet<User> User { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
@@ -94,6 +95,15 @@ namespace HollywoodAssessment.Data.Models
                     .HasMaxLength(200)
                     .IsUnicode(false);
             });
-        }
+
+            modelBuilder.Entity<User>(entity =>
+            {
+              entity.Property(e => e.Id).HasColumnName("Id");
+
+              entity.Property(e => e.Id)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+            });
+    }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using HollywoodAssessment.Common.Interfaces;
 using HollywoodAssessment.Data.Models;
@@ -15,17 +16,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace HollywoodAssessment
 {
   public class Startup
   {
-    public Startup(IConfiguration configuration)
+    public Startup(Microsoft.Extensions.Configuration.IConfiguration configuration)
     {
       Configuration = configuration;
     }
 
-    public IConfiguration Configuration { get; }
+    public Microsoft.Extensions.Configuration.IConfiguration Configuration { get; }
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
@@ -37,7 +41,8 @@ namespace HollywoodAssessment
       services.AddTransient<ITournamentService, TournamentService>();
       services.AddTransient<IEventsService, EventService>();
       services.AddTransient<IEventDetailService, EventDetailsService>();
-
+      services.AddTransient<IUserService, UserService>();
+      services.AddCors();
       services.AddSwaggerGen(x =>
       {
         x.SwaggerDoc("v1", new Info
@@ -52,6 +57,41 @@ namespace HollywoodAssessment
           }
         });
       });
+
+      var key = Encoding.ASCII.GetBytes("movetoappsettings");
+      services.AddAuthentication(x =>
+        {
+          x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+          x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(x =>
+        {
+          x.Events = new JwtBearerEvents
+          {
+            OnTokenValidated = context =>
+            {
+              var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+              var userId = int.Parse(context.Principal.Identity.Name);
+              var user = userService.GetById(userId);
+              if (user == null)
+              {
+                // return unauthorized if user no longer exists
+                context.Fail("Unauthorized");
+              }
+              return Task.CompletedTask;
+            }
+          };
+          x.RequireHttpsMetadata = false;
+          x.SaveToken = true;
+          x.TokenValidationParameters = new TokenValidationParameters
+          {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false
+          };
+        });
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,7 +100,11 @@ namespace HollywoodAssessment
       app.UseStaticFiles();
       app.UseSwagger();
       app.UseSwaggerUI(x => { x.SwaggerEndpoint("/swagger/v1/swagger.json", "Hollywood API v1"); } );
-
+      app.UseCors(x => x
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+      app.UseAuthentication();
 
       if (env.IsDevelopment())
       {
