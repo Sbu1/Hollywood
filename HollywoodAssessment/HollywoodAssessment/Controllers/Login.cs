@@ -21,6 +21,7 @@ namespace HollywoodAssessment.API.Controllers
   {
     private readonly IUserService _userService;
     private readonly IMapper _mapper;
+    private readonly AppSettings _appSettings;
 
     public Login(
       IUserService userService,

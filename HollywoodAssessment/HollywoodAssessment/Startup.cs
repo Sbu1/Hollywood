@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HollywoodAssessment.Common.Interfaces;
+using HollywoodAssessment.Common.Helper;
 using HollywoodAssessment.Data.Models;
 using HollywoodAssessment.Service.Service;
 using Microsoft.AspNetCore.Builder;
@@ -17,6 +18,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using AutoMapper;
+using HollywoodAssessment.Common.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -58,7 +60,11 @@ namespace HollywoodAssessment
         });
       });
 
-      var key = Encoding.ASCII.GetBytes("movetoappsettings");
+      var appsetSection = Configuration.GetSection("AppSetting");
+      services.Configure<appSettings>(appsetSection);
+
+      var appsettings = appsetSection.Get<appSettings>();
+      var key = Encoding.ASCII.GetBytes(appsettings.Secret);
       services.AddAuthentication(x =>
         {
           x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
