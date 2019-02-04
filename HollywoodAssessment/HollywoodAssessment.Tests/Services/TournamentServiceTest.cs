@@ -34,6 +34,23 @@ namespace HollywoodAssessment.Tests.Services
       Assert.IsNotNull(result);
     }
     //TODO More tests for create tournament
+    [Test]
+    public void GetTournament_GivenValidID_ShouldReturnTournament()
+    {
+      var tournamentid = 1;
+
+      var result = _tournamentService.GetTournament(tournamentid);
+
+      Assert.IsNotNull(result);
+    }
+
+    [Test]
+    public void GetTournament_GivenInvalidID_ShouldThrowException()
+    {
+      var tournament = -1;
+
+      Assert.Throws<HttpStatusCodeException>(() => _tournamentService.GetTournament(tournament));
+    }
 
     [Test]
     public void UpdateTournament_GivenValidTournamentandID_ShouldUpdateTournament()
@@ -59,23 +76,7 @@ namespace HollywoodAssessment.Tests.Services
      Assert.Less(after, before);
     }
 
-    [Test]
-    public void GetTournament_GivenValidID_ShouldReturnTournament()
-    {
-      var tournamentid = 1;
 
-      var result = _tournamentService.GetTournament(tournamentid);
-
-      Assert.IsNotNull(result);
-    }
-
-    [Test]
-    public void GetTournament_GivenInvalidID_ShouldThrowException()
-    {
-      var tournament = -1;
-      
-      Assert.Throws<HttpStatusCodeException>(() => _tournamentService.GetTournament(tournament));
-    }
 
     
 
