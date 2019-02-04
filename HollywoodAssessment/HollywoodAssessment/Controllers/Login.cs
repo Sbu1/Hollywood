@@ -11,6 +11,7 @@ using HollywoodAssessment.Common.Interfaces;
 using HollywoodAssessment.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -24,10 +25,10 @@ namespace HollywoodAssessment.API.Controllers
     private readonly appSettings _appSettings;
 
     public Login(
-      IUserService userService,
-      IMapper mapper)
+      IUserService userService, IOptions<appSettings> appSettings)
     {
       _userService = userService;
+      _appSettings = appSettings.Value;
     }
 
     [AllowAnonymous]
@@ -37,7 +38,7 @@ namespace HollywoodAssessment.API.Controllers
       var user = _userService.Authenticate(userDto.Username, userDto.Password);
 
       var tokenHandler = new JwtSecurityTokenHandler();
-      var key = Encoding.ASCII.GetBytes("movetoappsettings");
+      var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
       var tokenDescriptor = new SecurityTokenDescriptor
       {
         Subject = new ClaimsIdentity(new Claim[]

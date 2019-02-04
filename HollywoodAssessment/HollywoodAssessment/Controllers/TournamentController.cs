@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HollywoodAssessmen.API.Controllers
 {
   [Route("api/[controller]")]
- [Authorize(Roles = "TournamentManager")]
+  [Authorize(Roles = "TournamentManager")]
   public class TournamentController : Controller
   {
     private readonly ITournamentService _tournamentService;
@@ -35,7 +35,7 @@ namespace HollywoodAssessmen.API.Controllers
     public void Post([FromBody]Tournament tournament)
     {
       _tournamentService.CreateTournament(tournament);
-      RedirectToAction("Post", "Event", new Event() {TournamentId = tournament.TournamentId});
+      RedirectToAction("Post", "Event", new Event() { TournamentId = tournament.TournamentId });
     }
 
     // PUT api/<controller>/5
