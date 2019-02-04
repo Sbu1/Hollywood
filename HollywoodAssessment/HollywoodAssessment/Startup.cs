@@ -45,6 +45,8 @@ namespace HollywoodAssessment
       services.AddTransient<IEventDetailService, EventDetailsService>();
       services.AddTransient<IUserService, UserService>();
       services.AddCors();
+      services.AddAutoMapper();
+
       services.AddSwaggerGen(x =>
       {
         x.SwaggerDoc("v1", new Info

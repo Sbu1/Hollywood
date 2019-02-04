@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
+
 using AutoMapper;
 using HollywoodAssessment.Common.Interfaces;
 using HollywoodAssessment.Data.Models;
@@ -21,7 +17,7 @@ namespace HollywoodAssessment.API.Controllers
   public class UserController : Controller
   {
     private readonly IUserService _userService;
-    private readonly IMapper _mapper;
+    private IMapper _mapper;
 
     public UserController(
         IUserService userService,
